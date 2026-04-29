@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Atelier
 
-## Getting Started
+Companion digital do curso **Vivendo de Bordado** (Bella). Protótipo MVP visual pra alunas — artesãs de 35–55 anos, com baixa familiaridade técnica — calcularem o preço justo de suas peças, organizarem pedidos e cronometrarem a produção.
 
-First, run the development server:
+> Esta é a primeira versão (MVP). Roda 100% no navegador, **sem backend**, com dados mockados e estado persistido em `localStorage`.
+
+## Features
+
+| Feature | O que faz |
+|---|---|
+| 🧮 **Calculadora** | Materiais + horas × valor/hora + margem + impostos + frete → preço sugerido com breakdown visual |
+| 📋 **CRM de Pedidos** | Cliente, telefone (link WhatsApp), endereço, status, valor, forma de pagamento |
+| ⏱ **Timer de Produção** | Cronômetro vinculado a um pedido. Mostra quanto valeu a sessão de bordado e atualiza o preço da peça |
+| 👋 **Onboarding** | 4 passos didáticos no primeiro acesso |
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4** + **shadcn/ui**
+- **Zustand** (com `persist` em localStorage)
+- **Vitest** (testes das funções puras)
+- **Vercel** (hosting)
+
+## Rodando local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm test         # roda vitest
+npm run build    # build de produção
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estrutura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/                  # páginas (App Router)
+├── page.tsx          # Painel inicial
+├── precificar/       # Calculadora
+├── pedidos/          # CRM
+└── timer/            # Timer
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+components/
+├── ui/               # shadcn components
+├── nav/              # bottom navigation
+├── precificacao/     # breakdown visual
+├── pedidos/          # cards e form
+└── onboarding/       # modal didático
 
-## Learn More
+lib/
+├── store.ts          # Zustand store
+├── pricing.ts        # cálculo de preço (pura, testada)
+├── format.ts         # BRL e horas
+├── mock-data.ts      # dataset inicial
+└── types.ts          # tipos compartilhados
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Paleta acolhedora **terracota / creme / sálvia** em OKLCH, tipografia **Fraunces** (serif acolhedor) + **Geist Sans**, mobile-first (público é 80% celular).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Próximos passos (fora do MVP)
 
-## Deploy on Vercel
+- Backend real (Postgres + Auth)
+- Multi-usuário com sync entre dispositivos
+- Integração WhatsApp Business API
+- Agente IA pra escrever bio do Instagram
+- Gamificação (badges, conquistas)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licença
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Privado — uso interno do projeto Vivendo de Bordado.
