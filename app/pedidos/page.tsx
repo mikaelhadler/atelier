@@ -22,11 +22,11 @@ export default function PedidosPage() {
 
   return (
     <div className="space-y-5">
-      <header className="flex items-center justify-between">
-        <div>
+      <header className="flex items-start justify-between gap-3">
+        <div className="space-y-0.5">
           <h1 className="font-serif text-3xl">Pedidos</h1>
           <p className="text-sm text-muted-foreground">
-            {orders.length} no total
+            Tudo aqui, no seu celular. Sem caderno, sem pedido esquecido.
           </p>
         </div>
         <OrderForm />
@@ -45,7 +45,8 @@ export default function PedidosPage() {
       <div className="space-y-3">
         {sorted.length === 0 ? (
           <p className="py-8 text-center text-muted-foreground">
-            Nenhum pedido por aqui
+            Nada aqui ainda. Toque em <strong>+ Novo</strong> pra registrar seu
+            primeiro pedido.
           </p>
         ) : (
           sorted.map((o) => <OrderCard key={o.id} order={o} />)
